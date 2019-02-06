@@ -4,6 +4,8 @@ import react.dom.div
 
 
 class Game(props: Props): RComponent<Game.Props, Game.State>(props) {
+    private var i = 0
+
     interface Props: RProps {
         var text: String
     }
@@ -15,11 +17,12 @@ class Game(props: Props): RComponent<Game.Props, Game.State>(props) {
         text = props.text
     }
 
+
     override fun RBuilder.render() {
         div(classes = "cool") {
             attrs.onClickFunction = {
                 setState {
-                    text = "already"
+                    text = "already${i++}"
                 }
                 println("clicked !!!")
             }
