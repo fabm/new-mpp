@@ -74,10 +74,28 @@ kotlin {
     }
 }
 
+task copyJs(type: Copy) {
+    from "$projectDir/src/jsMain/js"
+    into "$buildDir/js"
+}
+
+compileKotlinJs.dependsOn copyJs
+
 kotlinFrontend {
     npm {
         dependency "react"
         dependency "react-dom"
+        dependency "bootstrap"
+        dependency "css-loader"
+        dependency "node-sass"
+        dependency "postcss-loader"
+        dependency "sass-loader"
+        dependency "style-loader"
+        dependency "autoprefixer"
+        
+        devDependency("mini-css-extract-plugin")
+        devDependency("html-webpack-plugin")
+        devDependency("css-loader")
         devDependency("karma")
     }
 

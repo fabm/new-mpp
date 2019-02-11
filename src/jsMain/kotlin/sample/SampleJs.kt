@@ -13,7 +13,6 @@ actual object Platform {
     actual val name: String = "JS"
 }
 
-
 fun helloWorld(salutation: String) {
     val message = "$salutation from Kotlin.JS ${hello()}, check me value: ${Sample().checkMe()}"
     val elementById = document.getElementById("js-response")

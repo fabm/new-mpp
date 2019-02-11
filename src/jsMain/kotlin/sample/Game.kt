@@ -1,15 +1,16 @@
 import kotlinx.html.js.onClickFunction
 import react.*
-import react.dom.div
+import react.dom.a
 
 
-class Game(props: Props): RComponent<Game.Props, Game.State>(props) {
+class Game(props: Props) : RComponent<Game.Props, Game.State>(props) {
     private var i = 0
 
-    interface Props: RProps {
+    interface Props : RProps {
         var text: String
     }
-    interface State: RState {
+
+    interface State : RState {
         var text: String
     }
 
@@ -17,22 +18,20 @@ class Game(props: Props): RComponent<Game.Props, Game.State>(props) {
         text = props.text
     }
 
-
     override fun RBuilder.render() {
-        div(classes = "cool") {
+        a(href = "#", classes = "btn btn-primary") {
             attrs.onClickFunction = {
                 setState {
                     text = "already${i++}"
                 }
                 println("clicked !!!")
             }
-            +"[${state.text}]"
+            +"${state.text}"
         }
-
     }
 
 }
 
-fun RBuilder.game(text:String) = child(Game::class) {
+fun RBuilder.game(text: String) = child(Game::class) {
     attrs.text = text
 }
